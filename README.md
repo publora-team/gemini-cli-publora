@@ -10,10 +10,34 @@ Mastodon and Telegram.
 gemini extensions install https://github.com/publora-team/gemini-cli-publora
 ```
 
-On first use Gemini CLI opens a browser to sign in to Publora. There is no key
-to paste and nothing to install locally: the extension points at the hosted
-Publora MCP server, which supports OAuth discovery and dynamic client
-registration.
+Start Gemini CLI and sign in to Publora once:
+
+```
+/mcp auth publora
+```
+
+A browser window opens. There is no key to paste and nothing to install
+locally: the extension points at the hosted Publora MCP server, which supports
+OAuth discovery and dynamic client registration.
+
+### No browser (SSH, CI)
+
+OAuth needs a local browser. On a headless machine, create an API key in
+[Publora](https://app.publora.com/dashboard/api), export it as
+`PUBLORA_API_KEY` and add this to `~/.gemini/settings.json`. It takes
+precedence over the extension's server of the same name:
+
+```json
+{
+  "mcpServers": {
+    "publora": {
+      "url": "https://mcp.publora.com/mcp",
+      "type": "http",
+      "headers": { "Authorization": "Bearer $PUBLORA_API_KEY" }
+    }
+  }
+}
+```
 
 ## What you can ask for
 
@@ -24,18 +48,21 @@ registration.
 
 ## What it does
 
-- Creates, updates and deletes posts, as drafts or on a schedule
+- Creates and updates posts as drafts, on a schedule or for immediate
+  publishing, and deletes posts that have not been published
 - Attaches images and video by public link
 - Carries per-network settings: YouTube title and privacy, Instagram cover,
-  TikTok privacy, Telegram flags, Threads replies, LinkedIn visibility
+  TikTok privacy, Telegram flags, Threads replies, LinkedIn reposts
 - Reads post status and the accounts you connected
-- Adds comments and reactions on LinkedIn, and reads LinkedIn statistics
+- Adds comments and reactions on LinkedIn
+- Reads statistics for Instagram, Threads, Mastodon and Bluesky
 
 ## Account
 
 You need a Publora account. The free plan covers 3 connected accounts and 15
-posts a month, with no card, and it includes API and MCP access. X publishing
-and webhooks are on the paid plan.
+posts a month, with up to 3 scheduled at a time and 7 days ahead. It needs no
+card and includes API and MCP access. X publishing and webhooks are on the paid
+plan.
 
 - Product: https://publora.com
 - Docs: https://docs.publora.com

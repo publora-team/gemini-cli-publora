@@ -1,12 +1,13 @@
 {
   "name": "publora",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Publish and schedule social media posts from Gemini CLI. One call reaches LinkedIn, X, Instagram, Threads, TikTok, YouTube, Facebook, Bluesky, Mastodon and Telegram through Publora, with media, drafts and per-network settings.",
   "contextFileName": "GEMINI.md",
   "mcpServers": {
     "publora": {
-      "httpUrl": "https://mcp.publora.com/mcp",
-      "description": "Publora MCP server, hosted and streamable over HTTP. Sign in through your browser on first use: Gemini CLI discovers the OAuth configuration and registers itself, so there is nothing to paste and nothing to install."
+      "url": "https://mcp.publora.com/mcp",
+      "type": "http",
+      "description": "Publora MCP server, hosted and streamable over HTTP. Run /mcp auth publora once to sign in through your browser: Gemini CLI discovers the OAuth configuration and registers itself, so there is nothing to paste and nothing to install."
     }
   }
 }
